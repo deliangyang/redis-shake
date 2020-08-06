@@ -21,9 +21,6 @@ rm -rf ${output}
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
-GOPATH=$(pwd)
-export GOPATH
-
 info="redis-shake/common.Version=$branch"
 # golang version
 goversion=$(go version | awk -F' ' '{print $3;}')
@@ -46,7 +43,7 @@ for g in "${goos[@]}"; do
     export GOOS=$g
     echo "try build goos=$g"
 
-    build_dir="src/redis-shake/$i/main"
+    build_dir="cmd/shake"
     all_files=""
     for j in $(ls $build_dir); do
         all_files="$all_files $build_dir/$j "
@@ -58,7 +55,7 @@ done
 unset GOOS
 
 # build integration test
-$run_builder -o "${integration_test}/integration-test" "./src/integration-test/main/main.go"
+$run_builder -o "${integration_test}/integration-test" "./cmd/test/main.go"
 
 # copy scripts
 cp scripts/start.sh ${output}/

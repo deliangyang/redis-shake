@@ -8,7 +8,6 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	utils2 "github.com/deliangyang/redis-shake/cmd/shake/utils"
 	_ "net/http/pprof"
 	"os"
 	"os/signal"
@@ -74,7 +73,7 @@ func main() {
 	}
 
 	// verify parameters
-	if err = utils2.SanitizeOptions(*tp); err != nil {
+	if err = SanitizeOptions(*tp); err != nil {
 		crash(fmt.Sprintf("Conf.Options check failed: %s", err.Error()), -4)
 	}
 
