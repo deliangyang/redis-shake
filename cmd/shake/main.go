@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	utils2 "github.com/deliangyang/redis-shake/cmd/shake/utils"
 	_ "net/http/pprof"
 	"os"
 	"os/signal"
@@ -27,13 +28,6 @@ import (
 )
 
 type Exit struct{ Code int }
-
-const (
-	defaultHttpPort    = 9320
-	defaultSystemPort  = 9310
-	defaultSenderSize  = 65535
-	defaultSenderCount = 1024
-)
 
 func main() {
 	var err error
@@ -80,7 +74,7 @@ func main() {
 	}
 
 	// verify parameters
-	if err = SanitizeOptions(*tp); err != nil {
+	if err = utils2.SanitizeOptions(*tp); err != nil {
 		crash(fmt.Sprintf("Conf.Options check failed: %s", err.Error()), -4)
 	}
 

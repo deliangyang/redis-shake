@@ -3,6 +3,7 @@ package metric
 import (
 	"encoding/json"
 	"fmt"
+	conf "github.com/deliangyang/redis-shake/internal/configure"
 	"math"
 	"strconv"
 	"sync"

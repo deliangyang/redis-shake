@@ -6,15 +6,14 @@ import (
 	"fmt"
 	"net"
 	"reflect"
+	"strconv"
 	"strings"
 	"unsafe"
 
+	"github.com/cupcake/rdb/crc64"
 	"github.com/deliangyang/redis-shake/internal/configure"
 	"github.com/deliangyang/redis-shake/pkg/libs/bytesize"
-
-	"github.com/cupcake/rdb/crc64"
 	logRotate "gopkg.in/natefinch/lumberjack.v2"
-	"strconv"
 )
 
 const (

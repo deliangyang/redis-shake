@@ -9,7 +9,7 @@ import (
 	"crypto/tls"
 	"encoding/binary"
 	"fmt"
-	conf "github.com/deliangyang/redis-shake/internal/configure"
+	"github.com/FZambia/go-sentinel"
 	"io"
 	"math/rand"
 	"net"
@@ -18,13 +18,13 @@ import (
 	"strings"
 	"time"
 
+	conf "github.com/deliangyang/redis-shake/internal/configure"
 	"github.com/deliangyang/redis-shake/pkg/libs/atomic2"
 	"github.com/deliangyang/redis-shake/pkg/libs/errors"
 	"github.com/deliangyang/redis-shake/pkg/libs/log"
 	"github.com/deliangyang/redis-shake/pkg/libs/stats"
 	"github.com/deliangyang/redis-shake/pkg/rdb"
 	"github.com/deliangyang/redis-shake/pkg/redis"
-
 	redigo "github.com/garyburd/redigo/redis"
 	redigoCluster "github.com/vinllen/redis-go-cluster"
 )
@@ -52,7 +52,7 @@ func OpenRedisConnWithTimeout(target []string, authType, passwd string, readTime
 			log.Panicf("create cluster connection error[%v]", err)
 			return nil
 		}
-		return NewClusterConn(&cluster, RecvChanSize)
+		return NewClusterConn(cluster, RecvChanSize)
 	} else {
 		// tls only support single connection currently
 		return redigo.NewConn(OpenNetConn(target[0], authType, passwd, tlsEnable), readTimeout, writeTimeout)

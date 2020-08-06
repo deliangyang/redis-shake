@@ -4,7 +4,6 @@ package utils
 import (
 	"github.com/deliangyang/redis-shake/pkg/libs/log"
 	"github.com/deliangyang/redis-shake/pkg/rdb"
-
 	redigo "github.com/garyburd/redigo/redis"
 )
 

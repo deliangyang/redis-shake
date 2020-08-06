@@ -5,7 +5,6 @@ import (
 	"path/filepath"
 
 	"github.com/deliangyang/redis-shake/pkg/libs/log"
-
 	"github.com/nightlyone/lockfile"
 )
 

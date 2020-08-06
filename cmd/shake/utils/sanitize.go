@@ -1,4 +1,4 @@
-package main
+package utils
 
 import (
 	"fmt"
@@ -13,6 +13,13 @@ import (
 	conf "github.com/deliangyang/redis-shake/internal/configure"
 	"github.com/deliangyang/redis-shake/pkg/libs/log"
 	logRotate "gopkg.in/natefinch/lumberjack.v2"
+)
+
+const (
+	defaultHttpPort    = 9320
+	defaultSystemPort  = 9310
+	defaultSenderSize  = 65535
+	defaultSenderCount = 1024
 )
 
 // sanitize options. TODO, need split
