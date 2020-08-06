@@ -1,11 +1,13 @@
 package run
 
 import (
+	"bytes"
 	"fmt"
 	"math"
 	"reflect"
 	"strconv"
 	"sync"
+	"time"
 
 	"github.com/deliangyang/redis-shake/internal/common"
 	"github.com/deliangyang/redis-shake/internal/configure"
@@ -14,10 +16,7 @@ import (
 	"github.com/deliangyang/redis-shake/internal/scanner"
 	"github.com/deliangyang/redis-shake/pkg/libs/atomic2"
 	"github.com/deliangyang/redis-shake/pkg/libs/log"
-
-	"bytes"
 	"github.com/garyburd/redigo/redis"
-	"time"
 )
 
 type CmdRump struct {

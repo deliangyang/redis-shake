@@ -1,9 +1,9 @@
 package metric
 
 import (
-	utils "github.com/deliangyang/redis-shake/internal/common"
 	"strconv"
 
+	utils "github.com/deliangyang/redis-shake/internal/common"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 )

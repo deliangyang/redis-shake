@@ -2,6 +2,7 @@ package metric
 
 import (
 	"fmt"
+
 	"github.com/deliangyang/redis-shake/internal/base"
 	utils "github.com/deliangyang/redis-shake/internal/common"
 )

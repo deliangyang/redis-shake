@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	"github.com/deliangyang/redis-shake/internal/configure"
-
 	"github.com/garyburd/redigo/redis"
 )
 

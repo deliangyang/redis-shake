@@ -6,11 +6,10 @@ package run
 import (
 	"sync"
 
-	"github.com/deliangyang/redis-shake/pkg/libs/log"
-
 	"github.com/deliangyang/redis-shake/internal/common"
 	"github.com/deliangyang/redis-shake/internal/configure"
 	"github.com/deliangyang/redis-shake/internal/dbSync"
+	"github.com/deliangyang/redis-shake/pkg/libs/log"
 )
 
 // main struct

@@ -12,14 +12,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/deliangyang/redis-shake/pkg/libs/atomic2"
-	"github.com/deliangyang/redis-shake/pkg/libs/log"
-	"github.com/deliangyang/redis-shake/pkg/redis"
-
 	"github.com/deliangyang/redis-shake/internal/base"
 	"github.com/deliangyang/redis-shake/internal/common"
 	"github.com/deliangyang/redis-shake/internal/configure"
 	"github.com/deliangyang/redis-shake/internal/filter"
+	"github.com/deliangyang/redis-shake/pkg/libs/atomic2"
+	"github.com/deliangyang/redis-shake/pkg/libs/log"
+	"github.com/deliangyang/redis-shake/pkg/redis"
 )
 
 type CmdRestore struct {

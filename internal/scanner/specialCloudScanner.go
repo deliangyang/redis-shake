@@ -2,9 +2,9 @@ package scanner
 
 import (
 	"fmt"
+
 	"github.com/deliangyang/redis-shake/internal/common"
 	"github.com/deliangyang/redis-shake/internal/configure"
-
 	"github.com/garyburd/redigo/redis"
 )
 
