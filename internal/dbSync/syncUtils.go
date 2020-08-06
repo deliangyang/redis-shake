@@ -13,8 +13,8 @@ const (
 	barrierStatusHolding   = "holding barrier" // holding
 	barrierStatusHoldEnd   = "release barrier" // "exec" release the previous barrier
 
-	flushStatusNo      = 0
-	flushStatusYes     = 1
+	flushStatusNo  = 0
+	flushStatusYes = 1
 	// flushStatusMustNot = 2
 )
 
@@ -22,7 +22,7 @@ var (
 	/*
 	 * should add barrier?
 	 */
-	barrierMap = map[string]string {
+	barrierMap = map[string]string{
 		"select": barrierStatusAdd,
 		"multi":  barrierStatusHoldStart,
 		"exec":   barrierStatusHoldEnd,

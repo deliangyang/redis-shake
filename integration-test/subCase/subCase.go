@@ -1,16 +1,17 @@
 package subCase
 
 import (
-	redigo "github.com/garyburd/redigo/redis"
-	"integration-test/inject"
-	"pkg/libs/log"
-	"integration-test/deploy"
-	"strings"
-    "fmt"
-	"net/http"
-    "time"
-	"io/ioutil"
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"net/http"
+	"strings"
+	"time"
+
+	"github.com/deliangyang/redis-shake/integration-test/deploy"
+	"github.com/deliangyang/redis-shake/integration-test/inject"
+	"github.com/deliangyang/redis-shake/pkg/libs/log"
+	redigo "github.com/garyburd/redigo/redis"
 )
 
 /*
@@ -49,14 +50,14 @@ func GenerateShakeConf(sourcePort, targetPort int, filterKeyBlack, filterKeyWhit
 	}
 
 	mp["target.db"] = targetDB
-    mp["id"] = "redis-shake-integration"
-    mp["log.file"] = "redis-shake-integration.log"
-    mp["http_profile"] = "9320"
-    mp["rewrite"] = true
+	mp["id"] = "redis-shake-integration"
+	mp["log.file"] = "redis-shake-integration.log"
+	mp["http_profile"] = "9320"
+	mp["rewrite"] = true
 
-    if resumeBreakpoint {
-    	mp["resume_from_break_point"] = true
-    }
+	if resumeBreakpoint {
+		mp["resume_from_break_point"] = true
+	}
 
 	return mp
 }
@@ -82,28 +83,28 @@ func NewSubCase(sourceConn, targetConn redigo.Conn, sourcePort, targetPort int,
 
 func (sc *SubCase) Run() {
 	// 1. inject key before full sync
-    log.Info("1. inject key before full sync")
+	log.Info("1. inject key before full sync")
 	_, err := inject.InjectData(sc.sourceConn)
 	if err != nil {
 		log.Panicf("inject data before sync failed[%v]", err)
 	}
 
 	// 2. start redis-shake
-    log.Info("2. start redis-shake")
-    if err := sc.startShake(); err != nil {
-        log.Panicf("start redis-shake failed[%v]", err)
-    }
+	log.Info("2. start redis-shake")
+	if err := sc.startShake(); err != nil {
+		log.Panicf("start redis-shake failed[%v]", err)
+	}
 
 	// 3. check full-sync finish
-    log.Info("3. check full-sync finish")
+	log.Info("3. check full-sync finish")
 	type Val struct {
 		Status string `json:"Status"`
 	}
 	val := []Val{
-        {},
-    }
+		{},
+	}
 	for {
-        time.Sleep(2 * time.Second)
+		time.Sleep(2 * time.Second)
 
 		request, err := http.Get(fmt.Sprintf("http://localhost:%d/metric", 9320))
 		if err != nil {
@@ -119,19 +120,19 @@ func (sc *SubCase) Run() {
 		request.Body.Close()
 
 		// break until finish full sync
-        if len(val) == 0 {
-            log.Panic("invalid restful return length")
-        }
+		if len(val) == 0 {
+			log.Panic("invalid restful return length")
+		}
 		if val[0].Status == "incr" {
-            log.Info("check full-sync finish")
+			log.Info("check full-sync finish")
 			break
 		}
 
-        log.Info("check full-sync not ready")
+		log.Info("check full-sync not ready")
 	}
 
 	// 4. start redis-full-check to check the correctness
-    log.Info("4. run full-check")
+	log.Info("4. run full-check")
 	fullCheckConf := map[string]interface{}{
 		"s":            sc.shakeConf["source.address"],
 		"t":            sc.shakeConf["target.address"],
@@ -146,13 +147,13 @@ func (sc *SubCase) Run() {
 	}
 
 	// 5. stop shake
-    log.Info("5. stop shake")
+	log.Info("5. stop shake")
 	err = deploy.StopShake(sc.shakeConf)
 	if err != nil {
 		log.Errorf("stop shake failed: %v", err)
 	}
 
-    log.Info("all finish")
+	log.Info("all finish")
 }
 
 func (sc *SubCase) startShake() error {

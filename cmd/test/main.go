@@ -1,17 +1,17 @@
 package main
 
 import (
-	"pkg/libs/log"
 	"flag"
 
-	"integration-test/tcase"
+	"github.com/deliangyang/redis-shake/integration-test/tcase"
+	"github.com/deliangyang/redis-shake/pkg/libs/log"
 )
 
 func main() {
 	log.SetLevel(log.LEVEL_INFO)
 	sourcePort := flag.Int("s", 20001, "source redis port")
 	targetPort := flag.Int("t", 30001, "target redis port")
-    flag.Parse()
+	flag.Parse()
 
 	if sourcePort == nil || targetPort == nil {
 		log.Panicf("sourcePort and targetPort should be given")

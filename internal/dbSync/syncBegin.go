@@ -32,7 +32,7 @@ func (ds *DbSyncer) sendSyncCmd(master, authType, passwd string, tlsEnable bool)
 }
 
 func (ds *DbSyncer) sendPSyncCmd(master, authType, passwd string, tlsEnable bool, runId string,
-		prevOffset int64) (pipe.Reader, int64, bool, string) {
+	prevOffset int64) (pipe.Reader, int64, bool, string) {
 	c := utils.OpenNetConn(master, authType, passwd, tlsEnable)
 	log.Infof("DbSyncer[%d] psync connect '%v' with auth type[%v] OK!", ds.id, master, authType)
 
@@ -79,8 +79,8 @@ func (ds *DbSyncer) sendPSyncCmd(master, authType, passwd string, tlsEnable bool
 }
 
 func (ds *DbSyncer) runIncrementalSync(c net.Conn, br *bufio.Reader, bw *bufio.Writer, rdbSize int, runId string,
-		offset int64, master, authType, passwd string, tlsEnable bool, pipew pipe.Writer,
-		isFullSync bool) {
+	offset int64, master, authType, passwd string, tlsEnable bool, pipew pipe.Writer,
+	isFullSync bool) {
 	// write -> pipew -> piper -> read
 	defer pipew.Close()
 	if isFullSync {

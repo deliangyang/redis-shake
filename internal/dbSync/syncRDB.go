@@ -4,15 +4,15 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
+	"sync"
+	"time"
+
 	"github.com/deliangyang/redis-shake/internal/base"
 	utils "github.com/deliangyang/redis-shake/internal/common"
 	conf "github.com/deliangyang/redis-shake/internal/configure"
 	"github.com/deliangyang/redis-shake/internal/filter"
-	"github.com/deliangyang/redis-shake/pkg/libs/log"
-	"sync"
-	"time"
-
 	"github.com/deliangyang/redis-shake/internal/metric"
+	"github.com/deliangyang/redis-shake/pkg/libs/log"
 )
 
 func (ds *DbSyncer) syncRDBFile(reader *bufio.Reader, target []string, authType, passwd string, nsize int64, tlsEnable bool) {

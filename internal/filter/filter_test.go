@@ -311,7 +311,7 @@ func TestHasAtLeastOnePrefix(t *testing.T) {
 	}
 }
 
-func convertToByte(args... string) [][]byte {
+func convertToByte(args ...string) [][]byte {
 	ret := make([][]byte, 0)
 	for _, arg := range args {
 		ret = append(ret, []byte(arg))

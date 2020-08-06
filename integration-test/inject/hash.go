@@ -8,18 +8,18 @@ import (
 )
 
 type TpHash struct {
-	client redigo.Conn
-	keyNum int
+	client   redigo.Conn
+	keyNum   int
 	fieldNum int
-	r *rand.Rand
+	r        *rand.Rand
 }
 
 func NewTpHash(conn redigo.Conn, keyNum, fieldNum int) *TpHash {
 	return &TpHash{
-		client: conn,
-		keyNum: keyNum,
+		client:   conn,
+		keyNum:   keyNum,
 		fieldNum: fieldNum,
-		r: rand.New(rand.NewSource(time.Now().UnixNano())),
+		r:        rand.New(rand.NewSource(time.Now().UnixNano())),
 	}
 }
 

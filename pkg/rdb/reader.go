@@ -13,7 +13,6 @@ import (
 	"strconv"
 
 	"github.com/deliangyang/redis-shake/pkg/libs/errors"
-
 )
 
 var FromVersion int64 = 9
@@ -352,7 +351,7 @@ func (r *rdbReader) readEncodedLength() (length uint32, encoded bool, err error)
 	case rdb14bitLen:
 		var u2 uint8
 		u2, err = r.readUint8()
-		length = (uint32(u & 0x3f) << 8) + uint32(u2)
+		length = (uint32(u&0x3f) << 8) + uint32(u2)
 	case rdbEncVal:
 		encoded = true
 		length = uint32(u & 0x3f)

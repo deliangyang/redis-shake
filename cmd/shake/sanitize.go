@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	utils "github.com/deliangyang/redis-shake/internal/common"
-	conf "github.com/deliangyang/redis-shake/internal/configure"
 	"math"
 	"os"
 	"runtime"
@@ -11,6 +9,8 @@ import (
 	"strings"
 	"time"
 
+	utils "github.com/deliangyang/redis-shake/internal/common"
+	conf "github.com/deliangyang/redis-shake/internal/configure"
 	"github.com/deliangyang/redis-shake/pkg/libs/log"
 	logRotate "gopkg.in/natefinch/lumberjack.v2"
 )
@@ -43,7 +43,7 @@ func SanitizeOptions(tp string) error {
 	}
 
 	// 500 M
-	if conf.Options.BigKeyThreshold > 500 * utils.MB {
+	if conf.Options.BigKeyThreshold > 500*utils.MB {
 		return fmt.Errorf("BigKeyThreshold[%v] should <= 500 MB", conf.Options.BigKeyThreshold)
 	} else if conf.Options.BigKeyThreshold == 0 {
 		conf.Options.BigKeyThreshold = 50 * utils.MB
@@ -335,12 +335,12 @@ func SanitizeOptions(tp string) error {
 		// v1.6.24. update in #211 again. if the source version is bigger than the target version, do restore directly, if failed,
 		// then try to split it
 		/*
-		if ret := utils.CompareVersion(conf.Options.SourceVersion, conf.Options.TargetVersion, 2); ret != 0 && ret != 1 {
-			// target version is smaller than source version, or unknown
-			log.Warnf("target version[%v] < source version[%v], set big_key_threshold = 1. see #173",
-				conf.Options.TargetVersion, conf.Options.SourceVersion)
-			conf.Options.BigKeyThreshold = 1
-		}*/
+			if ret := utils.CompareVersion(conf.Options.SourceVersion, conf.Options.TargetVersion, 2); ret != 0 && ret != 1 {
+				// target version is smaller than source version, or unknown
+				log.Warnf("target version[%v] < source version[%v], set big_key_threshold = 1. see #173",
+					conf.Options.TargetVersion, conf.Options.SourceVersion)
+				conf.Options.BigKeyThreshold = 1
+			}*/
 
 		// set "psync = true" if the source version is >= 2.8
 		if tp == conf.TypeSync {
@@ -416,14 +416,14 @@ func SanitizeOptions(tp string) error {
 
 		// check db type
 		if conf.Options.SourceType != conf.Options.TargetType {
-			return fmt.Errorf("source type must equal to the target type when 'resume_from_break_point == true'" +
+			return fmt.Errorf("source type must equal to the target type when 'resume_from_break_point == true'"+
 				": source.type[%v] != target.type[%v]", conf.Options.SourceType, conf.Options.TargetType)
 		}
 
 		// check cluster nodes number
 		if conf.Options.SourceType == conf.RedisTypeCluster {
 			if len(conf.Options.SourceAddressList) != len(conf.Options.TargetAddressList) {
-				return fmt.Errorf("source db node number must equal to the target db node when " +
+				return fmt.Errorf("source db node number must equal to the target db node when "+
 					"'resume_from_break_point == true': source[%v] != target[%v]",
 					len(conf.Options.SourceAddressList), len(conf.Options.TargetAddressList))
 			}
@@ -443,7 +443,7 @@ func SanitizeOptions(tp string) error {
 			}
 			// 3. do comparison
 			if utils.CheckSlotDistributionEqual(srcSlot, dstSlot) == false {
-				return fmt.Errorf("resume_from_break_point source slot distribution should be equal to the" +
+				return fmt.Errorf("resume_from_break_point source slot distribution should be equal to the"+
 					" target: src[%v] dst[%v]", srcSlot, dstSlot)
 			}
 		}

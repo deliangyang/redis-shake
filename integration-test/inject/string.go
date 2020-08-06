@@ -10,14 +10,14 @@ import (
 type TpString struct {
 	client redigo.Conn
 	keyNum int
-	r *rand.Rand
+	r      *rand.Rand
 }
 
 func NewTpString(conn redigo.Conn, keyNum int) *TpString {
 	return &TpString{
 		client: conn,
 		keyNum: keyNum,
-		r: rand.New(rand.NewSource(time.Now().UnixNano())),
+		r:      rand.New(rand.NewSource(time.Now().UnixNano())),
 	}
 }
 

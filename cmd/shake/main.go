@@ -8,10 +8,6 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	run "github.com/deliangyang/redis-shake/internal"
-	utils "github.com/deliangyang/redis-shake/internal/common"
-	conf "github.com/deliangyang/redis-shake/internal/configure"
-	nimo "github.com/gugemichael/nimo4go"
 	_ "net/http/pprof"
 	"os"
 	"os/signal"
@@ -20,10 +16,14 @@ import (
 	"syscall"
 	"time"
 
+	run "github.com/deliangyang/redis-shake/internal"
 	"github.com/deliangyang/redis-shake/internal/base"
+	utils "github.com/deliangyang/redis-shake/internal/common"
+	conf "github.com/deliangyang/redis-shake/internal/configure"
 	"github.com/deliangyang/redis-shake/internal/metric"
 	"github.com/deliangyang/redis-shake/internal/restful"
 	"github.com/deliangyang/redis-shake/pkg/libs/log"
+	nimo "github.com/gugemichael/nimo4go"
 )
 
 type Exit struct{ Code int }

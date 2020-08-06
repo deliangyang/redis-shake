@@ -310,7 +310,7 @@ func (dre *dbRumperExecutor) exec() {
 		var b bytes.Buffer
 		fmt.Fprintf(&b, "dbRumper[%v] total = %v(keys) - %10v(keys) [%3d%%]  entry=%-12d",
 			dre.rumperId, dre.keyNumber, dre.stat.cCommands.Get(),
-			100 * dre.stat.cCommands.Get() / dre.keyNumber, dre.stat.wCommands.Get())
+			100*dre.stat.cCommands.Get()/dre.keyNumber, dre.stat.wCommands.Get())
 		log.Info(b.String())
 	}
 

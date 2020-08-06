@@ -3,6 +3,7 @@ package restful
 import (
 	"github.com/deliangyang/redis-shake/internal/common"
 	"github.com/deliangyang/redis-shake/internal/metric"
+	nimo "github.com/gugemichael/nimo4go"
 	"net/http"
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"

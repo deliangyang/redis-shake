@@ -2,6 +2,7 @@ package scanner
 
 import (
 	"bufio"
+	conf "github.com/deliangyang/redis-shake/internal/configure"
 	"github.com/deliangyang/redis-shake/pkg/libs/log"
 	"github.com/garyburd/redigo/redis"
 	"os"

@@ -2,15 +2,15 @@ package dbSync
 
 import (
 	"bufio"
+	"io"
+
 	"github.com/deliangyang/redis-shake/internal/base"
+	"github.com/deliangyang/redis-shake/internal/checkpoint"
 	utils "github.com/deliangyang/redis-shake/internal/common"
 	conf "github.com/deliangyang/redis-shake/internal/configure"
 	"github.com/deliangyang/redis-shake/internal/heartbeat"
 	"github.com/deliangyang/redis-shake/internal/metric"
 	"github.com/deliangyang/redis-shake/pkg/libs/log"
-	"io"
-
-	"github.com/deliangyang/redis-shake/internal/checkpoint"
 )
 
 // one sync link corresponding to one DbSyncer
@@ -80,9 +80,9 @@ func (ds *DbSyncer) GetExtraInfo() map[string]interface{} {
 
 // main
 func (ds *DbSyncer) Sync() {
-	log.Infof("DbSyncer[%d] starts syncing data from %v to %v with http[%v], enableResumeFromBreakPoint[%v], " +
+	log.Infof("DbSyncer[%d] starts syncing data from %v to %v with http[%v], enableResumeFromBreakPoint[%v], "+
 		"slot boundary[%v, %v]", ds.id, ds.source, ds.target, ds.httpProfilePort, ds.enableResumeFromBreakPoint,
-			ds.slotLeftBoundary, ds.slotRightBoundary)
+		ds.slotLeftBoundary, ds.slotRightBoundary)
 
 	var err error
 	runId, offset, dbid := "?", int64(-1), 0

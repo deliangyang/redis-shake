@@ -1,12 +1,13 @@
 package tcase
 
 import (
-	"integration-test/deploy"
 	"fmt"
-    "time"
-	shakeUtils "redis-shake/common"
-	"pkg/libs/log"
-	"integration-test/subCase"
+	"time"
+
+	"github.com/deliangyang/redis-shake/integration-test/deploy"
+	"github.com/deliangyang/redis-shake/integration-test/subCase"
+	shakeUtils "github.com/deliangyang/redis-shake/internal/common"
+	"github.com/deliangyang/redis-shake/pkg/libs/log"
 )
 
 type Standalone2StandaloneCase struct {
@@ -34,8 +35,8 @@ func (s2s *Standalone2StandaloneCase) Before() error {
 		return fmt.Errorf("deploy source redis failed: %v", err)
 	}
 
-    // wait ready
-    time.Sleep(3 * time.Second)
+	// wait ready
+	time.Sleep(3 * time.Second)
 
 	return nil
 }

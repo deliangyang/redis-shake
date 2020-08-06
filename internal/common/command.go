@@ -3,6 +3,7 @@ package utils
 import (
 	"bytes"
 	"fmt"
+	conf "github.com/deliangyang/redis-shake/internal/configure"
 	"sort"
 	"strconv"
 	"strings"

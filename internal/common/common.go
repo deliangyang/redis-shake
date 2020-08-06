@@ -139,13 +139,13 @@ func CheckVersionChecksum(d []byte) (uint, uint64, error) {
 	}
 
 	footer := length - 10
-	rdbVersion := uint((d[footer + 1] << 8) | d[footer])
+	rdbVersion := uint((d[footer+1] << 8) | d[footer])
 	if rdbVersion > RDBVersion {
 		return 0, 0, fmt.Errorf("current version[%v] > RDBVersion[%v]", rdbVersion, RDBVersion)
 	}
 
-	checksum := binary.LittleEndian.Uint64(d[length - 8:])
-	digest := crc64.Digest(d[: length - 8])
+	checksum := binary.LittleEndian.Uint64(d[length-8:])
+	digest := crc64.Digest(d[:length-8])
 	if checksum != digest {
 		return 0, 0, fmt.Errorf("rdb: invalid CRC checksum[%v] != digest[%v]", checksum, digest)
 	}
@@ -156,15 +156,15 @@ func CheckVersionChecksum(d []byte) (uint, uint64, error) {
 func GetMetric(input int64) string {
 	switch {
 	case input > PB:
-		return fmt.Sprintf("%.2fPB", float64(input) / PB)
+		return fmt.Sprintf("%.2fPB", float64(input)/PB)
 	case input > TB:
-		return fmt.Sprintf("%.2fTB", float64(input) / TB)
+		return fmt.Sprintf("%.2fTB", float64(input)/TB)
 	case input > GB:
-		return fmt.Sprintf("%.2fGB", float64(input) / GB)
+		return fmt.Sprintf("%.2fGB", float64(input)/GB)
 	case input > MB:
-		return fmt.Sprintf("%.2fMB", float64(input) / MB)
+		return fmt.Sprintf("%.2fMB", float64(input)/MB)
 	case input > KB:
-		return fmt.Sprintf("%.2fKB", float64(input) / KB)
+		return fmt.Sprintf("%.2fKB", float64(input)/KB)
 	default:
 		return fmt.Sprintf("%dB", input)
 	}

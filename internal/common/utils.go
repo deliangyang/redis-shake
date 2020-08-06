@@ -828,7 +828,7 @@ func RestoreRdbEntry(c redigo.Conn, e *rdb.BinEntry) {
 
 	// TODO, need to judge big key
 	if e.Type != rdb.RDBTypeStreamListPacks &&
-			(uint64(len(e.Value)) > conf.Options.BigKeyThreshold || e.RealMemberCount != 0) {
+		(uint64(len(e.Value)) > conf.Options.BigKeyThreshold || e.RealMemberCount != 0) {
 		log.Debugf("restore big key[%s] with length[%v] and member count[%v]", e.Key, len(e.Value), e.RealMemberCount)
 		//use command
 		if conf.Options.KeyExists == "rewrite" && e.NeedReadLen == 1 {
@@ -894,7 +894,7 @@ RESTORE:
 				goto RESTORE
 			case "ignore":
 				log.Warnf("target key name is busy but ignore: %v", string(e.Key))
-				case "none":
+			case "none":
 				log.Panicf("target key name is busy: %v", string(e.Key))
 			}
 		} else if strings.Contains(err.Error(), "Bad data format") {

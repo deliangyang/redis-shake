@@ -6,8 +6,8 @@ var (
 
 type Base interface {
 	SetInfo(sourcePort, targetPort int) // set
-	Info() string  // name
-	Before() error // prepare
-	Run() error    // run
-	After() error  // finish
+	Info() string                       // name
+	Before() error                      // prepare
+	Run() error                         // run
+	After() error                       // finish
 }

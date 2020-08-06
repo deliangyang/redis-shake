@@ -103,6 +103,6 @@ func (cc *ClusterConn) Flush() error {
 
 // read recvChan
 func (cc *ClusterConn) Receive() (reply interface{}, err error) {
-	ret := <- cc.recvChan
+	ret := <-cc.recvChan
 	return ret.answer, ret.err
 }
