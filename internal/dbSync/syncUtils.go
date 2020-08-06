@@ -1,10 +1,11 @@
 package dbSync
 
 import (
+	"time"
+
 	conf "github.com/deliangyang/redis-shake/internal/configure"
 	"github.com/deliangyang/redis-shake/pkg/libs/atomic2"
 	"github.com/deliangyang/redis-shake/pkg/libs/log"
-	"time"
 )
 
 const (

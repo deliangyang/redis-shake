@@ -2,9 +2,10 @@ package inject
 
 import (
 	"fmt"
-	redigo "github.com/garyburd/redigo/redis"
 	"math/rand"
 	"time"
+
+	redigo "github.com/garyburd/redigo/redis"
 )
 
 type TpString struct {

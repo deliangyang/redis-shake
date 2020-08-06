@@ -2,8 +2,9 @@ package utils
 
 import (
 	"fmt"
-	conf "github.com/deliangyang/redis-shake/internal/configure"
 	"strings"
+
+	conf "github.com/deliangyang/redis-shake/internal/configure"
 )
 
 const (

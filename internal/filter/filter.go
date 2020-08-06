@@ -1,10 +1,11 @@
 package filter
 
 import (
-	utils "github.com/deliangyang/redis-shake/internal/common"
-	conf "github.com/deliangyang/redis-shake/internal/configure"
 	"strconv"
 	"strings"
+
+	utils "github.com/deliangyang/redis-shake/internal/common"
+	conf "github.com/deliangyang/redis-shake/internal/configure"
 )
 
 var (

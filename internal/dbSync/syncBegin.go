@@ -2,15 +2,16 @@ package dbSync
 
 import (
 	"bufio"
+	"io"
+	"net"
+	"time"
+
 	"github.com/deliangyang/redis-shake/internal/base"
 	utils "github.com/deliangyang/redis-shake/internal/common"
 	conf "github.com/deliangyang/redis-shake/internal/configure"
 	"github.com/deliangyang/redis-shake/pkg/libs/atomic2"
 	"github.com/deliangyang/redis-shake/pkg/libs/io/pipe"
 	"github.com/deliangyang/redis-shake/pkg/libs/log"
-	"io"
-	"net"
-	"time"
 )
 
 // send command to source redis
@@ -86,7 +87,7 @@ func (ds *DbSyncer) runIncrementalSync(c net.Conn, br *bufio.Reader, bw *bufio.W
 	if isFullSync {
 		p := make([]byte, 8192)
 		// read rdb in for loop
-		for ; rdbSize != 0; {
+		for rdbSize != 0 {
 			// br -> pipew
 			rdbSize -= utils.Iocopy(br, pipew, p, rdbSize)
 		}

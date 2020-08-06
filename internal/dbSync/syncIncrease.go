@@ -4,22 +4,22 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
-	utils "github.com/deliangyang/redis-shake/internal/common"
-	conf "github.com/deliangyang/redis-shake/internal/configure"
-	"github.com/deliangyang/redis-shake/internal/filter"
-	"github.com/deliangyang/redis-shake/pkg/libs/atomic2"
-	"github.com/deliangyang/redis-shake/pkg/libs/log"
-	"github.com/deliangyang/redis-shake/pkg/redis"
 	"io"
 	"net"
 	"strconv"
 	"strings"
 	"time"
 
-	"github.com/deliangyang/redis-shake/internal/metric"
-
-	redigo "github.com/garyburd/redigo/redis"
 	"unsafe"
+
+	utils "github.com/deliangyang/redis-shake/internal/common"
+	conf "github.com/deliangyang/redis-shake/internal/configure"
+	"github.com/deliangyang/redis-shake/internal/filter"
+	"github.com/deliangyang/redis-shake/internal/metric"
+	"github.com/deliangyang/redis-shake/pkg/libs/atomic2"
+	"github.com/deliangyang/redis-shake/pkg/libs/log"
+	"github.com/deliangyang/redis-shake/pkg/redis"
+	redigo "github.com/garyburd/redigo/redis"
 )
 
 func (ds *DbSyncer) syncCommand(reader *bufio.Reader, target []string, authType, passwd string, tlsEnable bool, dbid int) {

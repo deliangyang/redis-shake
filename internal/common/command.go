@@ -3,11 +3,11 @@ package utils
 import (
 	"bytes"
 	"fmt"
-	conf "github.com/deliangyang/redis-shake/internal/configure"
 	"sort"
 	"strconv"
 	"strings"
 
+	conf "github.com/deliangyang/redis-shake/internal/configure"
 	redigo "github.com/garyburd/redigo/redis"
 )
 
