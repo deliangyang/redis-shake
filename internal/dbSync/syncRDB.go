@@ -5,6 +5,8 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/deliangyang/redis-shake/internal/base"
+	utils "github.com/deliangyang/redis-shake/internal/common"
+	conf "github.com/deliangyang/redis-shake/internal/configure"
 	"github.com/deliangyang/redis-shake/internal/filter"
 	"github.com/deliangyang/redis-shake/pkg/libs/log"
 	"sync"

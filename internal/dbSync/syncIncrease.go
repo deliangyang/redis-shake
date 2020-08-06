@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
+	utils "github.com/deliangyang/redis-shake/internal/common"
+	conf "github.com/deliangyang/redis-shake/internal/configure"
 	"github.com/deliangyang/redis-shake/internal/filter"
 	"github.com/deliangyang/redis-shake/pkg/libs/atomic2"
 	"github.com/deliangyang/redis-shake/pkg/libs/log"

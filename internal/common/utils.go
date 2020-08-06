@@ -46,13 +46,13 @@ func OpenRedisConnWithTimeout(target []string, authType, passwd string, readTime
 				WriteTimeout: writeTimeout,
 				KeepAlive:    32,               // number of available connections
 				AliveTime:    10 * time.Second, // hard code to set alive time in single connection, not the tcp keep alive
-				Password:     passwd,
+				// Password:     passwd,
 			})
 		if err != nil {
 			log.Panicf("create cluster connection error[%v]", err)
 			return nil
 		}
-		return NewClusterConn(cluster, RecvChanSize)
+		return NewClusterConn(&cluster, RecvChanSize)
 	} else {
 		// tls only support single connection currently
 		return redigo.NewConn(OpenNetConn(target[0], authType, passwd, tlsEnable), readTimeout, writeTimeout)

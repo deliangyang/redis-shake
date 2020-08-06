@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	utils "github.com/deliangyang/redis-shake/internal/common"
+	conf "github.com/deliangyang/redis-shake/internal/configure"
 	"math"
 	"os"
 	"runtime"

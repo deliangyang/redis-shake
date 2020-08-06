@@ -3,6 +3,8 @@ package dbSync
 import (
 	"bufio"
 	"github.com/deliangyang/redis-shake/internal/base"
+	utils "github.com/deliangyang/redis-shake/internal/common"
+	conf "github.com/deliangyang/redis-shake/internal/configure"
 	"github.com/deliangyang/redis-shake/internal/heartbeat"
 	"github.com/deliangyang/redis-shake/internal/metric"
 	"github.com/deliangyang/redis-shake/pkg/libs/log"
