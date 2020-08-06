@@ -9,6 +9,7 @@ require (
 	github.com/gugemichael/nimo4go v0.0.0-20200403101749-647883f3a053
 	github.com/nightlyone/lockfile v1.0.0
 	github.com/prometheus/client_golang v1.7.1
+	github.com/stretchr/testify v1.4.0
 	github.com/vinllen/redis-go-cluster v0.0.0-20200724054240-c957918bbc61
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 )

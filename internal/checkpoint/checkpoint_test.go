@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"testing"
 
+	utils "github.com/deliangyang/redis-shake/internal/common"
 	"github.com/deliangyang/redis-shake/internal/unit_test_common"
 	"github.com/stretchr/testify/assert"
 )
