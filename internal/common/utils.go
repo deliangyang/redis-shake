@@ -13,6 +13,7 @@ import (
 	"math/rand"
 	"net"
 	"os"
+	"regexp"
 	"strconv"
 	"strings"
 	"time"
@@ -28,6 +29,10 @@ import (
 	"github.com/deliangyang/redis-shake/pkg/redis"
 	redigo "github.com/garyburd/redigo/redis"
 	redigoCluster "github.com/vinllen/redis-go-cluster"
+)
+
+var (
+	//regReplace = regexp.MustCompile(`user:extend:(\d+)`)
 )
 
 func OpenRedisConn(target []string, authType, passwd string, isCluster bool, tlsEnable bool) redigo.Conn {
@@ -776,6 +781,9 @@ func RestoreRdbEntry(c redigo.Conn, e *rdb.BinEntry) {
 		e.Key = bytes.Replace(e.Key, []byte("{"), []byte(""), 1)
 		e.Key = bytes.Replace(e.Key, []byte("}"), []byte(""), 1)
 	}
+	// todo
+	// e.Key = regReplace.ReplaceAll(e.Key, []byte("user:extend:{$1}"))
+
 	if e.ExpireAt != 0 {
 		now := uint64(time.Now().Add(conf.Options.ShiftTime).UnixNano())
 		now /= uint64(time.Millisecond)

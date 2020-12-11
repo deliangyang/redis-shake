@@ -82,7 +82,7 @@ func (cmd *CmdSync) Main() {
 	var wg sync.WaitGroup
 	wg.Add(len(conf.Options.SourceAddressList))
 
-	for i := 0; i < int(conf.Options.SourceRdbParallel); i++ {
+	for i := 0; i < conf.Options.SourceRdbParallel; i++ {
 		go func() {
 			for {
 				nd, ok := <-syncChan

@@ -79,7 +79,7 @@ func main() {
 
 	initSignal()
 	initFreeOS()
-	nimo.Profiling(int(conf.Options.SystemProfile))
+	nimo.Profiling(conf.Options.SystemProfile)
 	utils.Welcome()
 	utils.StartTime = fmt.Sprintf("%v", time.Now().Format(utils.GolangSecurityTime))
 
